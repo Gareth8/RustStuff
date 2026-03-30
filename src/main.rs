@@ -1,10 +1,12 @@
-// This is just me learning how to use rust
-// Don't expect anything good out of this
+/*
+This is just me learning how to use rust
+Don't expect anything good out of this
+*/
 
 use std::io;
 
 fn main() {
-    let options = ["Control Flow"];
+    let options = ["Control Flow", "Ownership"];
     let mut count = 1;
     println!("Choose one of the following options:");
 
@@ -21,7 +23,7 @@ fn main() {
             .read_line(&mut user_choice)
             .expect("Failed to read line");
 
-        if user_choice == "quit" {
+        if user_choice.trim() == "quit" { // Forgot to trim user_choice to remove the newline characters. Added that.
             break "Finished!";
         }
 
@@ -34,6 +36,7 @@ fn main() {
 
         match user_choice {
             1 => control_flow(),
+            2 => ownership(),
             _ => println!("Please input a number between 1 and {options_size}.")
         }
     };
@@ -73,4 +76,19 @@ fn control_flow() {
     for element in a {
         println!("the value is: {}", element);
     }
+}
+fn ownership() {
+    let s1 = String::from("hello");
+    let s2 = s1.clone();
+    println!("s1 = {s1}, s2 = {s2}");
+
+    let x = 5;
+    let y = x;
+    println!("x = {x}, y = {y}");
+
+    let new_string = takes_and_gives_back(String::from("Cheese"));
+    println!("{new_string}");
+}
+fn takes_and_gives_back(a_string: String) -> String {
+    a_string
 }
