@@ -13,15 +13,18 @@ fn main() {
         count += 1;
     }
 
-    loop {
+    println!("Type the word 'quit' to exit");
+
+    let result = loop {
         let mut user_choice = String::new();
         io::stdin()
             .read_line(&mut user_choice)
             .expect("Failed to read line");
 
-        // TODO Fix the input so it has a proper exit option
-        // Need to make it so that if they type text it asks again
-        // Something to do with the parse error
+        if user_choice == "quit" {
+            break "Finished!";
+        }
+
         let user_choice: u32 = user_choice
             .trim()
             .parse()
@@ -30,12 +33,12 @@ fn main() {
         let options_size = options.len();
 
         match user_choice {
-            0 => break,
             1 => control_flow(),
             _ => println!("Please input a number between 1 and {options_size}.")
         }
-    }
-    println!("Done!");
+    };
+
+    println!("{result}");
 }
 
 fn add_two_nums (x: i32, y: i32) -> i32 {
