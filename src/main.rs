@@ -10,7 +10,9 @@ fn main() {
         "Control Flow",
         "Ownership",
         "References and Borrowing",
-        "Slices"
+        "Slices",
+        "Structs",
+        "Rectangles"
     ];
     let mut count = 1;
 
@@ -43,6 +45,8 @@ fn main() {
             2 => ownership(),
             3 => references_and_borrowing(),
             4 => slices(),
+            5 => structs(),
+            6 => rectangles(),
             _ => println!("Please input a number between 1 and {options_size} inclusive.")
         }
     };
@@ -50,6 +54,36 @@ fn main() {
     println!("{result}");
 }
 
+// Structs
+struct User {
+    active: bool,
+    username: String,
+    email: String,
+    sign_in_count: u64,
+} // Normal struct use
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+    fn width(&self) -> bool {
+        self.width > 0
+    }
+}
+
+// Tuple structs
+/*
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+ */
+
+// Unit-Like structs
+// struct AlwaysEqual;
+
+// Functions
 fn add_two_nums (x: i32, y: i32) -> i32 {
     x + y
 }
@@ -179,4 +213,75 @@ fn better_first_words(s: &String) -> &str {
     }
 
     &s[..]
+}
+fn structs() {
+    let user1 = User {
+        active: true,
+        username: String::from("BillyBob"),
+        email: String::from("BillyBob@gmail.com"),
+        sign_in_count: 1,
+    };
+
+    let user_email = user1.email;
+    println!("Email is {user_email}.");
+
+    let mut user2 = User {
+        active: true,
+        username: String::from("JohnJones"),
+        email: String::from("JohnJones@gmail.com"),
+        sign_in_count: 4,
+    };
+    let mut user_name = user2.username;
+    println!("Username is {user_name}.");
+    user2.username = String::from("JohnnyJones");
+    user_name = user2.username;
+    println!("Username is now {user_name}.");
+
+    let user3 = build_user(String::from("Bob"),String::from("Bob@bob.com"));
+
+    let user4 = User {
+        active: user1.active,
+        username: user3.username,
+        email: String::from("Email@email.com"),
+        sign_in_count: user2.sign_in_count,
+    };
+
+    let user5 = User {
+        email: String::from("Cheese@cheddar.com"),
+        ..user4 // Taking all of the other fields from user4 using the range syntax.
+    };
+
+    // This is just to stop any warnings coming up for not using variables.
+    let name = user5.username;
+    let email = user5.email;
+    let sign_in_count = user2.sign_in_count.to_string();
+    let active = user3.active.to_string();
+    println!("User {name} has the email {email}. They have signed in {sign_in_count} time/s.\
+    If you were to say they are active, you would be {active}.");
+
+    /*
+    let black = Color(0, 0, 0);
+    let origin = Point(0, 0, 0);
+
+    let subject = AlwaysEqual;
+     */
+}
+fn build_user(email: String, username: String) -> User {
+    User {
+        active: true,
+        username,
+        email,
+        sign_in_count: 1,
+    }
+}
+fn rectangles() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    if rect1.width() {
+        println!("The rectangle has a nonzero width");
+    }
+    println!("The area of the rectangle is {} square pixels.", rect1.area());
 }
