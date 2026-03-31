@@ -4,6 +4,7 @@ Don't expect anything good out of this
 */
 
 use std::io;
+// use std::net::{Ipv4Addr, Ipv6Addr};
 
 fn main() {
     let options = [
@@ -12,7 +13,9 @@ fn main() {
         "References and Borrowing",
         "Slices",
         "Structs",
-        "Rectangles"
+        "Rectangles",
+        "Enums",
+        "Control Flow 2",
     ];
     let mut count = 1;
 
@@ -47,6 +50,8 @@ fn main() {
             4 => slices(),
             5 => structs(),
             6 => rectangles(),
+            7 => enums(),
+            8 => control_flow_two(),
             _ => println!("Please input a number between 1 and {options_size} inclusive.")
         }
     };
@@ -73,6 +78,15 @@ impl Rectangle {
         self.width > 0
     }
 }
+/*
+struct QuitMessage;
+struct MoveMessage {
+    x: i32,
+    y: i32,
+}
+struct WriteMessage(String);
+struct ChangeColorMessage(i32, i32, i32);
+*/
 
 // Tuple structs
 /*
@@ -83,6 +97,26 @@ struct Point(i32, i32, i32);
 // Unit-Like structs
 // struct AlwaysEqual;
 
+// Enums
+/*
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+impl Message {
+    fn call(&self) {
+
+    }
+}
+*/
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
 // Functions
 fn add_two_nums (x: i32, y: i32) -> i32 {
     x + y
@@ -284,4 +318,40 @@ fn rectangles() {
         println!("The rectangle has a nonzero width");
     }
     println!("The area of the rectangle is {} square pixels.", rect1.area());
+}
+fn enums() {
+    /*
+    let m = Message::Write(String::from("hello"));
+    m.call();
+     */
+    /*
+    let some_number = Some(5);
+    let some_char = Some('e');
+    let absent_number: Option<i32> = None;
+    */
+    let penny = value_in_cents(Coin::Penny).to_string();
+    let quarter = value_in_cents(Coin::Quarter).to_string();
+    let dime = value_in_cents(Coin::Dime).to_string();
+    let nickel = value_in_cents(Coin::Nickel).to_string();
+    println!("The penny has a value of {penny}.\
+    The quarter has a value of {quarter}.\
+    The dime has a value of {dime}.\
+    The nickel has a value of {nickel}.");
+}
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => {
+            println!("Lucky penny!");
+            1
+        },
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}
+fn control_flow_two() {
+    let config_max = Some(3u8);
+    if let Some(max) = config_max {
+        println!("The maximum number is {max}");
+    }
 }
