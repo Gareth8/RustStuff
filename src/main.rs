@@ -16,6 +16,7 @@ fn main() {
         "Rectangles",
         "Enums",
         "Control Flow 2",
+        "Collections"
     ];
     let mut count = 1;
 
@@ -52,6 +53,7 @@ fn main() {
             6 => utils::rectangles(),
             7 => utils::enums(),
             8 => utils::control_flow_two(),
+            9 => utils::collections(),
             _ => println!("Please input a number between 1 and {options_size} inclusive.")
         }
     };
