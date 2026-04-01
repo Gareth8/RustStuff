@@ -6,6 +6,7 @@
 #[path = "functions/rectangles_mod.rs"] mod rectangles_mod;
 #[path = "functions/enums_mod.rs"] mod enums_mod;
 #[path = "functions/collections_mod.rs"] mod collections_mod;
+#[path = "functions/error_handling_mod.rs"] mod error_handling_mod;
 
 pub fn control_flow() {
     control_flow_mod::control_flow();
@@ -33,4 +34,7 @@ pub fn control_flow_two() {
 }
 pub fn collections() {
     collections_mod::collections();
+}
+pub fn error_handling() {
+    error_handling_mod::error_handling();
 }
