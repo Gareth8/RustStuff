@@ -7,6 +7,7 @@
 #[path = "functions/enums_mod.rs"] mod enums_mod;
 #[path = "functions/collections_mod.rs"] mod collections_mod;
 #[path = "functions/error_handling_mod.rs"] mod error_handling_mod;
+#[path = "functions/generics_mod.rs"] mod generics_mod;
 
 pub fn control_flow() {
     control_flow_mod::control_flow();
@@ -38,3 +39,4 @@ pub fn collections() {
 pub fn error_handling() {
     error_handling_mod::error_handling();
 }
+pub fn generics() { generics_mod::generics();}

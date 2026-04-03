@@ -18,6 +18,7 @@ fn main() {
         "Control Flow 2",
         "Collections",
         "Error Handling",
+        "Generics",
     ];
     let mut count = 1;
 
@@ -56,6 +57,7 @@ fn main() {
             8 => utils::control_flow_two(),
             9 => utils::collections(),
             10 => utils::error_handling(),
+            11 => utils::generics(),
             _ => println!("Please input a number between 1 and {options_size} inclusive.")
         }
     };
