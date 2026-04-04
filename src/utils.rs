@@ -8,6 +8,7 @@
 #[path = "functions/collections_mod.rs"] mod collections_mod;
 #[path = "functions/error_handling_mod.rs"] mod error_handling_mod;
 #[path = "functions/generics_mod.rs"] mod generics_mod;
+#[path = "functions/testing_mod.rs"] mod testing_mod;
 
 pub fn control_flow() {
     control_flow_mod::control_flow();
@@ -40,3 +41,6 @@ pub fn error_handling() {
     error_handling_mod::error_handling();
 }
 pub fn generics() { generics_mod::generics();}
+pub fn testing() {
+    testing_mod::testing();
+}

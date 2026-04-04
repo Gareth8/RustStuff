@@ -19,6 +19,7 @@ fn main() {
         "Collections",
         "Error Handling",
         "Generics",
+        "Testing"
     ];
     let mut count = 1;
 
@@ -58,13 +59,16 @@ fn main() {
             9 => utils::collections(),
             10 => utils::error_handling(),
             11 => utils::generics(),
+            12 => utils::testing(),
             _ => println!("Please input a number between 1 and {options_size} inclusive.")
         }
     };
 
     println!("{result}");
 }
-
+pub fn add_two(a: i32) -> i32 {
+    a + 2
+}
 /* Structs
 /*
 struct QuitMessage;
